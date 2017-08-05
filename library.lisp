@@ -10,7 +10,8 @@
 (defparameter *tessdata-directory* 
   #+unix
   (namestring (or (probe-file "/usr/local/share/tessdata") ; Homebrew
-                  (probe-file "/usr/local/tessdata")))
+                  (probe-file "/usr/local/tessdata")
+                  (probe-file "/usr/share/tessdata")))
   #+windows
   (namestring (probe-file "C:\\Program Files\\Tesseract OCR\\tessdata"))
   "*tessdata-directory* should point to the location of the directory containing 
@@ -22,4 +23,4 @@ find the true location of the tessdata directory if one exists.
 
 If your .traineddata files are in a non-standard location, it can be shadowed; i.e.
 (let ((*tessdata-directory* \"/path/to/tessdata\"))
-     (image-to-text #P\"~/eurotext.jpg\"))")
+  (image-to-text #P\"~/eurotext.jpg\"))")
